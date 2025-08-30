@@ -1,7 +1,7 @@
 const { cmd } = require('../lib/command');
 const os = require("os");
 const config = require('../settings');
-
+const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson, jsonformat} = require('../lib/functions');
 cmd({
     pattern: "alive",
     alias: ["status", "online", "bot"],
@@ -13,26 +13,26 @@ cmd({
     try {
         // Random English quotes/messages
         const messages = [
-            "💫 Keep shining, the bot is alive and ready!",
-            "🔥 Energy high, problems low. I'm online!",
-            "✨ Life is awesome! Bot is up and running!",
-            "⚡ Stay focused, stay powerful. Bot active now!",
-            "🌟 Happiness is key. Bot online and energized!",
-            "💡 Creativity flowing, assistance ready anytime!",
-            "🚀 Ready for action! The bot is fully operational!",
-            "🎯 Target achieved: Bot is alive and kicking!",
-            "🌈 Spread positivity! The bot is online!",
-            "⚡ Lightning fast! Bot is ready for commands!",
-            "🎉 Celebration time! The bot is up!",
-            "💥 Power mode ON! Bot active!",
-            "🌟 Star quality! I'm online!",
-            "🔥 Fuelled with energy! Bot ready!",
-            "✨ Magic is real! Bot alive!",
-            "💡 Bright ideas flowing! Bot at your service!",
-            "🚀 Launch sequence complete! I'm online!",
-            "🎯 Aim high, bot ready to assist!",
-            "⚡ Shockwaves incoming! Bot is alive!",
-            "🌈 Rainbow vibes! Bot active and cheerful!"
+            "*💫 Keep shining, the bot is alive and ready...!*",
+            "*🔥 Energy high, problems low. I'm online...!*",
+            "*✨ Life is awesome..! Bot is up and running...!*",
+            "*⚡ Stay focused, stay powerful. Bot active now...!*",
+            "*🌟 Happiness is key. Bot online and energized...!*",
+            "*💡 Creativity flowing, assistance ready anytime...!*",
+            "*🚀 Ready for action...! The bot is fully operational...!*",
+            "*🎯 Target achieved: Bot is alive and kicking...!*",
+            "*🌈 Spread positivity...! The bot is online...!*",
+            "*⚡ Lightning fast...! Bot is ready for commands...!*",
+            "*🎉 Celebration time...! The bot is up...!*",
+            "*💥 Power mode ON! Bot active...!*",
+            "*🌟 Star quality...! I'm online...!*",
+            "*🔥 Fuelled with energy! Bot ready...!*",
+            "*✨ Magic is real...! Bot alive...!*",
+            "*💡 Bright ideas flowing...! Bot at your service...!*",
+            "*🚀 Launch sequence complete! I'm online...!*",
+            "*🎯 Aim high, bot ready to assist...!*",
+            "*⚡ Shockwaves incoming...! Bot is alive...!*",
+            "🌈 Rainbow vibes...! Bot active and cheerful..!*"
         ];
 
         // Pick a random message
@@ -55,23 +55,41 @@ cmd({
         const platform = os.platform();
         const arch = os.arch();
 
+        //USER
+        const senderName = m.pushName || "User"
+
         const status = `
-╭───〔 *🤖 ${config.BOT_NAME} 𝐒ᴛᴀᴛᴜ𝐒* 〕───◉
-│✨ *𝙱𝙾𝚃 𝙸𝚂 𝙰𝙲𝚃𝙸𝚅𝙴 & 𝙾𝙽𝙻𝙸𝙽𝙴..!*
-│
-│🧠 *ＯＷＮＥＲ:* ${config.OWNER_NAME}
-│⚡ *ＶＥＲＳＩＯＮ:* 1.0.0
-│📝 *ＰＲＥＦＩＸ:* [${config.PREFIX}]
-│📳 *ＭＯＤＥ:* [${config.MODE}]
-│💾 *ＲＡＭ:* ${usedMem}MB / ${totalMem}MB
-│🖥️ *ＰＬＡＴＦＯＲＭ* : ${platform} (${arch})
-│⏱️ *ＵＰＴΙＭＥ* : ${hours}ｈ ${minutes}ｍ ${seconds}ｓ
-│
-╰─────────────────────────◉
+👋Hello *${senderName},* welcome 𝐍ｏ𝐕𝐀-ｘ Ｍ𝐃
+╭─────────────────◉
+│👨‍💻 *OWNER:* ${config.OWNER_NAME}
+│⚡ *VERSION:* 1.0.0
+│📝 *PREFIX:* [${config.PREFIX}]
+│📳 *MODE:* [${config.MODE}]
+│💾 *RAM:* ${usedMem}MB / ${totalMem}MB
+│🖥️ *PLATFORM* : ${platform} (${arch})
+│⏱️ *UPTIME* : ${hours}ｈ ${minutes}ｍ ${seconds}ｓ
+╰──────────────────◉
 ${config.FOOTER}`;
 
+        let buttons = [
+                {
+        buttonId: ".owner",
+        buttonText: { displayText: "⫷ 𝗢𝗪𝗡𝗘𝗥 ⫸" },
+        type: 1
+    },
+    {
+        buttonId: ".ping",
+        buttonText: { displayText: "⫷ 𝗣𝗜𝗡𝗚 ⫸" },
+        type: 1
+    }
+];
+
+      
         // 2️⃣ Send image + status in separate message
         await conn.sendMessage(from, {
+             buttons,
+            headerType: 1,
+            viewOnce: true,
             image: { url: "https://files.catbox.moe/er0vnl.png" },
             caption: status,
             contextInfo: {
