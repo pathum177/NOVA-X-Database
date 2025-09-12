@@ -2,7 +2,7 @@ const { cmd } = require("../lib/command");
 const fs = require("fs");
 const { exec } = require("child_process");
 
-const ENV_PATH = "./settings.js"; // use settings.js
+const ENV_PATH = "./settings.json"; // use settings.js
 const PM2_PROCESS = "NOVA-X-MD"; // pm2 process name
 
 cmd({
