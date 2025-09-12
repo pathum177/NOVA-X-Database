@@ -45,6 +45,8 @@ const { exec } = require('child_process');
 const { tmpdir } = require('os')
 const Crypto = require('crypto')
 const Jimp = require('jimp')
+const pool = require('./lib/db');
+const loadconfig = require('./settings');
 
  function genMsgId() {
   const prefix = "3EB";
