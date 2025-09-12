@@ -83,7 +83,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 9000;
 
-async function connectToWA() {
+async function connectToWA() {;
 					/////////////////MONGODB.///////////////
 const connectDB = require(`./lib/mongodb`)
 connectDB();
