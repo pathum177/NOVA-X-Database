@@ -83,16 +83,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 9000;
 
-async function connectToWA() {
-					/////////////////MONGODB.///////////////
-const connectDB = require(`./lib/mongodb`)
-connectDB();
-
-//////////////////////////////////////////////////
-const{readEnv} = require(`./lib/database`)
-const config = await readEnv();
-const prefix = config.PREFIX
-////////////////////////////////////////////////////////
+async function connectToWA() {;
+	
 	console.log("Connecting NOVA-X-MD🔃");
     const {
         version,
