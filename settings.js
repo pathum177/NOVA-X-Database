@@ -1,5 +1,19 @@
 const fs = require('fs');
-let config = JSON.parse(fs.readFileSync("./settings.json"));
+const db = require("./lib/db");
+
+async function loadConfig() {
+  let config = {};
+  try {
+    const res = await db.query("SELECT key, value FROM configs");
+    res.rows.forEach(row => {
+      config[row.key] = row.value;
+    });
+  } catch (e) {
+    console.error("⚠️ Error loading config from PostgreSQL:", e);
+  }
+  return config;
+}
+////////////////////////////////////
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
 function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
