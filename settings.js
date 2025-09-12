@@ -19,7 +19,6 @@ AUTO_VOICE: process.env.AUTO_VOICE || 'true',
 AUTO_RECORDING: process.env.AUTO_RECORDING || 'false',
 AUTO_TYPING: process.env.AUTO_TYPING || 'false',
 AUTO_BIO: process.env.AUTO_BIO || 'true',
-AUTO_RECORDING: process.env.AUTO_RECORDING || 'false',
 OWNER_NAME: process.env.OWNER_NAME || '_Mr Unknown X Luxalgo_',
 OWNER_NUMBER: process.env.OWNER_NUMBER || ['94723975388','94741259325'],
 AUTO_READ_STATUS: process.env.AUTO_READ_STATUS === undefined ?"true" : process.env.AUTO_READ_STATUS
