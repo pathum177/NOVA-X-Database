@@ -60,7 +60,7 @@ const Jimp = require('jimp')
 
 const path = require('path')
 const msgRetryCounterCache = new NodeCache()
-const prefix = config.PREFIX
+
 
 const ownerNumber = ['94723975388', '94741259325'];
 //================== SESSION ==================
@@ -124,7 +124,7 @@ const{readEnv} = require(`./lib/database`)
 const config = await readEnv();
 const prefix = config.PREFIX
 ////////////////////////////////////////////////////////
-            }
+            
         } else if (connection === 'open') {
 
             console.log('Installing plugins 🧬... ')
