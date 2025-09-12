@@ -1,6 +1,5 @@
 const { cmd } = require('../lib/command');
 const os = require("os");
-const {readEnv} = require('../lib/database');
 const moment = require("moment-timezone");
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson, jsonformat} = require('../lib/functions');
 
