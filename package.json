@@ -20,6 +20,7 @@
     "@distube/ytdl-core": "latest",
     "fluent-ffmpeg": "^2.1.2",
     "wa-sticker-formatter": "^4.4.4",
+    "mongoose": "8.18.1",
     "pdfkit": "^0.14.0",
     "wa_set_pkg": "1.0.5",
     "yt-search": "latest",
