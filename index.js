@@ -115,6 +115,15 @@ async function connectToWA() {;
         if (connection === 'close') {
             if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
                 connectToWA()
+				/////////////////MONGODB.///////////////
+const connectDB = require(`./lib/mongodb`)
+connectDB();
+
+//////////////////////////////////////////////////
+const{readEnv} = require(`./lib/database`)
+const config = await readEnv();
+const prefix = config.PREFIX
+////////////////////////////////////////////////////////
             }
         } else if (connection === 'open') {
 
