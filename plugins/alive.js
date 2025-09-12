@@ -1,6 +1,6 @@
 const { cmd } = require('../lib/command');
 const os = require("os");
-const config = require('../settings');
+const {readEnv} = require('../lib/database');
 const moment = require("moment-timezone");
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson, jsonformat} = require('../lib/functions');
 
@@ -30,6 +30,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, reply, sender }) => {
     try {
+      const config = await readEnv();
         // 🕒 Sri Lanka Time
         const hour = moment().tz("Asia/Colombo").hour();
         const date = moment().tz("Asia/Colombo").format("YYYY-MM-DD");  // 📅 Date
