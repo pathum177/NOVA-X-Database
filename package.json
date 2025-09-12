@@ -30,6 +30,7 @@
     "pm2": "^6.0.8",
     "util": "^0.12.4",
     "express": "latest",
+    "pg": "8.16.3", 
     "axios": "^1.2.5",
     "file_size_url": "^1.0.6",
     "fs-extra": "^11.3.0",
