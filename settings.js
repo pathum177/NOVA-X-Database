@@ -20,7 +20,7 @@ function convertToBool(text, fault = 'true') {
 }
 module.exports = {
 
-SESSION_ID: process.env.SESSION_ID || 'KSMD~P9pH0ZSS#hDshLEPLcjzJOvFH8O9gUMElulPz-ywsqOxzTL6VTeQ',
+SESSION_ID: process.env.SESSION_ID || '𝙰𝚂𝙸𝚃𝙷𝙰-𝙼𝙳=1518314290523893',
 MONGODB: process.env.MONGODB || "mongodb://mongo:hSKOyytRSHAikyAFUajcmkoJTEcgoBTR@trolley.proxy.rlwy.net:29757",  
 PREFIX: process.env.PREFIX || '.',
 ALIVE_IMG: process.env.ALIVE_IMG || 'https://files.catbox.moe/er0vnl.png',   
