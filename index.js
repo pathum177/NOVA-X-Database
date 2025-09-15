@@ -186,13 +186,32 @@ conn.sendMessage(conn.user.id,{ text: up, contextInfo: {
 
 
 
-conn.ev.on('creds.update', saveCreds)  
+	conn.ev.on('messages.upsert', async (chatUpdate) => {
+    try {
+        let mek = chatUpdate.messages[0]
+        if (!mek.message) return
 
-    conn.ev.on('messages.upsert', async (mek) => {
-      try {
-            mek = mek.messages[0]
-            if (!mek.message) return
-            mek.message = (getContentType(mek.message) === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
+        // Handle ephemeral messages
+        mek.message = (getContentType(mek.message) === 'ephemeralMessage') 
+            ? mek.message.ephemeralMessage.message 
+            : mek.message
+
+        // Ignore own messages
+        if (mek.key.fromMe) return
+
+        // Only group messages
+        if (!mek.key.remoteJid.endsWith('@g.us')) return
+
+        // Mark as read
+        await conn.readMessages([mek.key])
+
+        // Call your AI reply module
+        require('./lib/aiy')(conn, mek)
+
+    } catch (err) {
+        console.error(err)
+    }
+})						  
 
 //================== AUTO STATUS VIEW ==================
 
