@@ -206,7 +206,7 @@ conn.sendMessage(conn.user.id,{ text: up, contextInfo: {
         await conn.readMessages([mek.key])
 
         // Call your AI reply module
-        require('./lib/aiy')(conn, mek)
+        require('./lib/ai')(conn, mek)
 
     } catch (err) {
         console.error(err)
